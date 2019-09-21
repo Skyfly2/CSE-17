@@ -67,8 +67,11 @@ public class ShoppingCart{
         }
         
         //If the item doesn't exist, inform the user
+        if(found){
+            System.out.println("Item Has been removed!\n");
+        }
         if(!found){
-            System.out.println("The item could not be found! Nothing has been removed");
+            System.out.println("The item could not be found! Nothing has been removed\n");
         }
     }
     
@@ -150,7 +153,7 @@ public class ShoppingCart{
             cartItems.get(c).printItemCost();
         }
         
-        System.out.println("Total Cost: $" + getCostOfCart());
+        System.out.println("Total Cost: $" + getCostOfCart() + "\n");
     }
     
     /**

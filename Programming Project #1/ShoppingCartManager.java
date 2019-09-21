@@ -58,7 +58,6 @@ public class ShoppingCartManager{
                 System.out.println("Enter name of item to remove: ");
                 String itemName = scan.nextLine();
                 cart.removeItem(itemName);
-                System.out.println("Item Has been removed!\n");
             }
             else if(select.equals("c")){
                 //Modify item quantity
