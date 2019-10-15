@@ -1,48 +1,41 @@
 import java.util.*;
 import java.io.*;
-public class TestExpense{
-    public static void main (String[] args) throws FileNotFoundException{
-        try{
+
+public class TestExpense {
+    public static void main(String[] args) {
+        // Gather and test to make sure file exists
+        try {
             File input = new File(args[0]);
             Scanner scan = new Scanner(input);
             String accountType = scan.next(), first = scan.next(), last = scan.next(), name = first + " " + last;
             PrintWriter output = new PrintWriter("output.txt");
-            try{
+            try {
+                // Create Account and print invoice
                 ExpenseAccount acc = createAccount(accountType, name);
-                double initialBalance = acc.getBalance();
-                while(scan.hasNextLine()){
-                    double charge = scan.nextInt();
-                    try{
-                        acc.makePayment(charge);
-                    }
-                    catch(AccountDepletedException ex){
-                        output.println(ex.getMessage());
-                    }
-                }
                 acc.printInvoice(scan, output);
-            }
-            catch(UnknownAccountException ex){
+                output.close();
+                scan.close();
+            } catch (UnknownAccountException ex) {
+                // If account doesn't exist, print it
                 output.println("Invoice For: " + name);
                 output.println(ex.getMessage());
                 output.close();
                 scan.close();
             }
-        }
-        catch(FileNotFoundException ex){
+        } catch (FileNotFoundException ex) {
             System.out.println("The file could not be found");
         }
     }
-    public static ExpenseAccount createAccount(String accountType, String name) throws UnknownAccountException{
-        if(accountType.equals("E")){
+
+    public static ExpenseAccount createAccount(String accountType, String name) throws UnknownAccountException {
+        // Depending on the type of the account, make the actual type different
+        if (accountType.equals("E")) {
             return new ExpenseAccount(name);
-        }
-        else if(accountType.equals("G")){
+        } else if (accountType.equals("G")) {
             return new GraderExpense(name, 2000);
-        }
-        else if(accountType.equals("F")){
+        } else if (accountType.equals("F")) {
             return new FacultyExpense(name, 2000);
-        }
-        else{
+        } else {
             throw new UnknownAccountException();
         }
     }

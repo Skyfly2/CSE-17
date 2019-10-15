@@ -1,0 +1,5 @@
+Invoice For: Charlie Pop
+Department Grader Expense Account Was Charged $599.0
+Department Grader Expense Account Was Charged $200.0
+Department Grader Expense Account Was Charged $800.0
+Insufficient Funds
