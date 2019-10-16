@@ -61,7 +61,9 @@ public class ExpenseAccount {
             try {
                 // Make payment and print to output
                 this.makePayment(charge);
-                output.println("Department Expense Account Was Charged $" + charge);
+                output.print("Department Expense Account Was Charged $");
+                output.printf("%.2f", charge);
+                output.print("\n");
             } catch (AccountDepletedException ex) {
                 output.println(ex.getMessage());
             }

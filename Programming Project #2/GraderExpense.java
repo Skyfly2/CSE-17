@@ -34,7 +34,9 @@ public class GraderExpense extends ExpenseAccount {
             try {
                 // Make payment and print to output
                 this.makePayment(charge);
-                output.println("Department Grader Expense Account Was Charged $" + charge);
+                output.print("Department Grader Account Was Charged $");
+                output.printf("%.2f", charge);
+                output.print("\n");
             } catch (AccountDepletedException ex) {
                 output.println(ex.getMessage());
             }

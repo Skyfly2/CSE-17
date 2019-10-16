@@ -12,6 +12,7 @@ public class TestExpense {
             try {
                 // Create Account and print invoice
                 ExpenseAccount acc = createAccount(accountType, name);
+                acc.setBalance(2000);
                 acc.printInvoice(scan, output);
                 output.close();
                 scan.close();
