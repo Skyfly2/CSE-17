@@ -1,7 +1,18 @@
 import java.util.*;
 import java.io.*;
 
+/*
+ * CSE 17 Fall 2019
+ * @author Asher Hamrick
+ * Programming Assignment #2
+ * Program: TestExpense
+ */
 public class TestExpense {
+    /**
+     * Test the expense classes
+     * 
+     * @param args arguments
+     */
     public static void main(String[] args) {
         // Gather and test to make sure file exists
         try {
@@ -28,6 +39,14 @@ public class TestExpense {
         }
     }
 
+    /**
+     * Create a new type of ExpenseAccount
+     * 
+     * @param accountType
+     * @param name
+     * @return
+     * @throws UnknownAccountException
+     */
     public static ExpenseAccount createAccount(String accountType, String name) throws UnknownAccountException {
         // Depending on the type of the account, make the actual type different
         if (accountType.equals("E")) {
