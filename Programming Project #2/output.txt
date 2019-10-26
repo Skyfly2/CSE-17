@@ -1,5 +1,2 @@
-Invoice For: Charlie Pop
-Department Grader Account Was Charged $599.00
-Department Grader Account Was Charged $200.00
-Department Grader Account Was Charged $800.00
-Insufficient Funds
+Invoice For: Thorn McNally
+Department Expense Account Was Charged $499.50

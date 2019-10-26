@@ -30,7 +30,7 @@ public class GraderExpense extends ExpenseAccount {
         output.println("Invoice For: " + this.getAccountName());
         // Loop through file to determine all charges
         while (scan.hasNextLine()) {
-            double charge = scan.nextInt();
+            double charge = scan.nextDouble();
             try {
                 // Make payment and print to output
                 this.makePayment(charge);
