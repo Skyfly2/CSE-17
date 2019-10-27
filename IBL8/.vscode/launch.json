@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - RecursiveCalls",
+            "request": "launch",
+            "mainClass": "RecursiveCalls"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - RecursiveBinary",
+            "request": "launch",
+            "mainClass": "RecursiveBinary"
+        }
+    ]
+}

@@ -1,3 +1,9 @@
+/*
+ * CSE 17 Fall 2019
+ * @author Asher Hamrick
+ * IBL8
+ * Program: RecursiveBinary
+ */
 public class RecursiveBinary {
     public static void main(String[] args) {
         int[] myList = { 2, 4, 7, 9, 10, 11, 19, 29, 30 };
