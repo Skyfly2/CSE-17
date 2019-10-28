@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TestResizableCircle",
+            "request": "launch",
+            "mainClass": "TestResizableCircle"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TestCircle",
+            "request": "launch",
+            "mainClass": "TestCircle"
+        }
+    ]
+}
