@@ -2,6 +2,18 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - joh",
+            "request": "launch",
+            "mainClass": "joh"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PermutationsK",
+            "request": "launch",
+            "mainClass": "PermutationsK"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Combinations",
             "request": "launch",
             "mainClass": "Combinations"
