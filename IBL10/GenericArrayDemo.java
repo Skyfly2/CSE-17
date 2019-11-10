@@ -1,3 +1,10 @@
+
+/*
+ * CSE 17 Fall 2019
+ * @author Asher Hamrick
+ * IBL10
+ * Program: GenericArrayDemo
+ */
 import java.util.*;
 
 public class GenericArrayDemo<E extends Comparable<E>> {

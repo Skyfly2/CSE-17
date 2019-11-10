@@ -1,3 +1,10 @@
+
+/*
+ * CSE 17 Fall 2019
+ * @author Asher Hamrick
+ * IBL10
+ * Program: LinearSearch
+ */
 import java.util.*;
 
 public class LinearSearch<E extends Comparable<E>> {
@@ -7,7 +14,7 @@ public class LinearSearch<E extends Comparable<E>> {
         vals = list;
     }
 
-    public E[] search(E key, int start, int end) {
+    public int search(E key, int start, int end) {
         if (vals[(start + end) / 2].compareTo(key) == 0) {
             return (start + end) / 2;
         } else {

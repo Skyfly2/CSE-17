@@ -17,20 +17,24 @@ public class EightQueens {
      */
     public static void main(String[] args) {
         int size = 0;
-        // This program is fully functional, but uses an algorithm I developed that is
-        // unrelated to the one Professor Carr presented us with. She told me that it
-        // was ok to use my own algorithm
         try {
             size = Integer.parseInt(args[0]);
-            // Create board
-            boolean[][] board = new boolean[size][size];
+            if (size > 8 || size < 1) {
+                throw new IllegalArgumentException();
+            } else {
+                // Create board
+                boolean[][] board = new boolean[size][size];
 
-            // Initial call of recursive method
-            findPlacements(board, 0);
-            System.out.println("There are " + count + " solutions");
+                // Initial call of recursive method
+                findPlacements(board, 0);
+                System.out.println("There are " + count + " solutions");
+            }
         } catch (NumberFormatException e) {
-            System.out.println("Please enter an integer through the command line.");
+            System.out.println("Please enter an integer (1-8) through the command line.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Please enter an integer no less than 1 and no greater than 8.");
         }
+
     }
 
     /**
@@ -38,7 +42,7 @@ public class EightQueens {
      * 
      * @param board the board
      * @param row   current row on the board
-     * @return
+     * @return true
      */
     public static boolean findPlacements(boolean board[][], int row) {
         // Base case (all queens have been placed) print board

@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - LinearSearch",
+            "request": "launch",
+            "mainClass": "LinearSearch"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - GenericArrayDemo",
             "request": "launch",
             "mainClass": "GenericArrayDemo"
