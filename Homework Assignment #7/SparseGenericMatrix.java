@@ -19,7 +19,6 @@ public class SparseGenericMatrix<E extends Number> {
      */
     public SparseGenericMatrix(E[][] matrix) {
         int count = 0;
-        Number zero = 0;
         // Find number of values
         for (int c = 0; c < matrix.length; c++) {
             for (int i = 0; i < matrix[0].length; i++) {

@@ -10,7 +10,11 @@ import java.util.*;
 public class GenericMatrixOperations {
     SparseGenericMatrix matrix1, matrix2;
     int[] rowArray1, colArray1, rowArray2, colArray2;
-    Number[] valArray1, valArray2;
+    Number[] valArray1, valArray2, valArray3, valArray4;
+    ArrayList<Number> rowResult = new ArrayList<>();
+    ArrayList<Number> colResult = new ArrayList<>();
+    ArrayList<Number> valResult = new ArrayList<>();
+    ArrayList<Integer> array2indices = new ArrayList<>();
 
     /**
      * Creates a new instance of GenericMatrixOperations
@@ -26,92 +30,182 @@ public class GenericMatrixOperations {
         this.rowArray2 = matrix2.getRowArray();
         this.colArray1 = matrix1.getColArray();
         this.colArray2 = matrix2.getColArray();
-
     }
 
     /**
      * Adds matrices together and returns the matrix in (i,j,k) format
      */
     public SparseGenericMatrix addMatrices() {
-        // Find length of rows and cols
-        int l1 = rowArray1[rowArray1.length - 1];
-        int l2 = rowArray2[rowArray2.length - 1];
         int length = 0;
-        if (l1 > l2) {
-            length = rowArray1[rowArray1.length - 1] + 1;
+        int height = 0;
+        // Determine the number of rows and columns
+        if (rowArray1[rowArray1.length - 1] > rowArray2[rowArray2.length - 1]) {
+            length = rowArray1[rowArray1.length - 1];
         } else {
-            length = rowArray2[rowArray2.length - 1] + 1;
+            length = rowArray2[rowArray2.length - 1];
         }
-        // Create matrices to add values
-        Number[][] result1 = new Number[length][length];
-        Number[][] result2 = new Number[length][length];
-        Number[][] result = new Number[length][length];
-        // Default matrices to 0
-        for (int c = 0; c < result1.length; c++) {
-            for (int i = 0; i < result1[0].length; i++) {
-                result1[c][i] = 0;
-                result2[c][i] = 0;
+        if (colArray1[colArray1.length - 1] > colArray2[colArray2.length - 1]) {
+            height = colArray1[colArray1.length - 1];
+        } else {
+            height = colArray2[colArray2.length - 1];
+        }
+
+        // Add matrix values
+        for (int c = 0; c < rowArray1.length; c++) {
+            boolean same = false;
+            // Run through other array looking for match
+            for (int i = 0; i < rowArray2.length; i++) {
+                if (rowArray1[c] == rowArray2[i] && colArray1[c] == colArray2[i]) {
+                    rowResult.add(rowArray1[c]);
+                    colResult.add(colArray1[c]);
+                    valResult.add(valArray1[c].doubleValue() + valArray2[i].doubleValue());
+                    // Store added index so it isn't added again
+                    array2indices.add(i);
+                    same = true;
+                }
+            }
+            // Add value if there isn't a match
+            if (!same) {
+                rowResult.add(rowArray1[c]);
+                colResult.add(colArray1[c]);
+                valResult.add(valArray1[c]);
             }
         }
-        // Set matrices with values from (i,j,k)
-        for (int c = 0; c < rowArray1.length; c++) {
-            result1[rowArray1[c]][colArray1[c]] = valArray1[c];
-        }
+        // Add values that were skipped
         for (int c = 0; c < rowArray2.length; c++) {
-            result2[rowArray2[c]][colArray2[c]] = valArray2[c];
+            Integer index = c;
+            if (!array2indices.contains(index)) {
+                rowResult.add(rowArray2[c]);
+                colResult.add(colArray2[c]);
+                valResult.add(valArray2[c]);
+            }
         }
-        // Add matrices and display matrix
-        for (int c = 0; c < length; c++) {
+        // Now that we have IJK, Create Matrix to run as parameter for
+        // SparseGenericMatrix
+        Number[][] resultant = new Number[height][length];
+        // Default matrix to 0
+        for (int c = 0; c < height; c++) {
+            for (int i = 0; i < length; i++) {
+                Integer zero = 0;
+                resultant[c][i] = zero;
+            }
+        }
+        for (int c = 0; c < height; c++) {
+            for (int i = 0; i < length; i++) {
+                Number row = c;
+                Number col = i;
+                // Make sure they exist before adding anything
+                if (colResult.contains(col) && rowResult.contains(row)) {
+                    for (int m = 0; m < rowResult.size(); m++) {
+                        if (colResult.get(m) == col && rowResult.get(m) == row) {
+                            resultant[c][i] = valResult.get(m);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        // Display Matrix
+        for (int c = 0; c < height; c++) {
             System.out.println(" ");
             for (int i = 0; i < length; i++) {
-                result[c][i] = result1[c][i].doubleValue() + result2[c][i].doubleValue();
-                System.out.print(result[c][i] + " ");
+                System.out.print(resultant[c][i] + " ");
             }
         }
+        // Clear lists for reuse on other operations
+        rowResult.clear();
+        colResult.clear();
+        valResult.clear();
         // Return in (i,j,k) format
-        return new SparseGenericMatrix(result);
+        return new SparseGenericMatrix(resultant);
+
     }
 
     /**
      * Subtracts matrices from one another and returns the matrix in (i,j,k) format
      */
     public SparseGenericMatrix subtractMatrices() {
-        // Find length of rows and cols
-        int l1 = rowArray1[rowArray1.length - 1];
-        int l2 = rowArray2[rowArray2.length - 1];
         int length = 0;
-        if (l1 > l2) {
-            length = rowArray1[rowArray1.length - 1] + 1;
+        int height = 0;
+        // Determine the number of rows and columns
+        if (rowArray1[rowArray1.length - 1] > rowArray2[rowArray2.length - 1]) {
+            length = rowArray1[rowArray1.length - 1];
         } else {
-            length = rowArray2[rowArray2.length - 1] + 1;
+            length = rowArray2[rowArray2.length - 1];
         }
-        // Create matrices to add values of generic matrices
-        Number[][] result1 = new Number[length][length];
-        Number[][] result2 = new Number[length][length];
-        Number[][] result = new Number[length][length];
-        // Default matrices to 0
-        for (int c = 0; c < result1.length; c++) {
-            for (int i = 0; i < result1[0].length; i++) {
-                result1[c][i] = 0;
-                result2[c][i] = 0;
+        if (colArray1[colArray1.length - 1] > colArray2[colArray2.length - 1]) {
+            height = colArray1[colArray1.length - 1];
+        } else {
+            height = colArray2[colArray2.length - 1];
+        }
+
+        // Subtract matrix values
+        for (int c = 0; c < rowArray1.length; c++) {
+            boolean same = false;
+            // Run through other array looking for match
+            for (int i = 0; i < rowArray2.length; i++) {
+                if (rowArray1[c] == rowArray2[i] && colArray1[c] == colArray2[i]) {
+                    rowResult.add(rowArray1[c]);
+                    colResult.add(colArray1[c]);
+                    valResult.add(valArray1[c].doubleValue() - valArray2[i].doubleValue());
+                    // Store added index so it isn't added again
+                    array2indices.add(i);
+                    same = true;
+                }
+            }
+            // Add value if there isn't a match
+            if (!same) {
+                rowResult.add(rowArray1[c]);
+                colResult.add(colArray1[c]);
+                valResult.add(valArray1[c]);
             }
         }
-        // Set matrices with values from (i,j,k)
-        for (int c = 0; c < rowArray1.length; c++) {
-            result1[rowArray1[c]][colArray1[c]] = valArray1[c];
-        }
+        // Add values that were skipped
         for (int c = 0; c < rowArray2.length; c++) {
-            result2[rowArray2[c]][colArray2[c]] = valArray2[c];
+            Integer index = c;
+            if (!array2indices.contains(index)) {
+                rowResult.add(rowArray2[c]);
+                colResult.add(colArray2[c]);
+                valResult.add(valArray2[c]);
+            }
         }
-        // Subtract matrices and display matrix
-        for (int c = 0; c < length; c++) {
+        // Now that we have IJK, Create Matrix to run as parameter for
+        // SparseGenericMatrix
+        Number[][] resultant = new Number[height][length];
+        // Default matrix to 0
+        for (int c = 0; c < height; c++) {
+            for (int i = 0; i < length; i++) {
+                Integer zero = 0;
+                resultant[c][i] = zero;
+            }
+        }
+        for (int c = 0; c < height; c++) {
+            for (int i = 0; i < length; i++) {
+                Number row = c;
+                Number col = i;
+                // Make sure they exist before adding anything
+                if (colResult.contains(col) && rowResult.contains(row)) {
+                    for (int m = 0; m < rowResult.size(); m++) {
+                        if (colResult.get(m) == col && rowResult.get(m) == row) {
+                            resultant[c][i] = valResult.get(m);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        // Display Matrix
+        for (int c = 0; c < height; c++) {
             System.out.println(" ");
             for (int i = 0; i < length; i++) {
-                result[c][i] = result1[c][i].doubleValue() - result2[c][i].doubleValue();
-                System.out.print(result[c][i] + " ");
+                System.out.print(resultant[c][i] + " ");
             }
         }
+        // Clear lists for reuse on other operations
+        rowResult.clear();
+        colResult.clear();
+        valResult.clear();
         // Return in (i,j,k) format
-        return new SparseGenericMatrix(result);
+        return new SparseGenericMatrix(resultant);
     }
 }
