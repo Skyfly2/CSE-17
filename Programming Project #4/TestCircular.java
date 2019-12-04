@@ -6,8 +6,9 @@ public class TestCircular {
         c.addStart(1);
         System.out.println(c.toString());
         c.deleteStart();
+
         System.out.println(c.toString());
-        c.addEnd(4);
+
         System.out.println(c.toString());
         System.out.println("Size of linked list: " + c.getSize());
         System.out.println("Element at 2nd position: " + c.getElement(2));
