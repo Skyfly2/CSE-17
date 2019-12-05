@@ -42,7 +42,7 @@ public class SortingAnalysis {
                 int[] desccl = desc.clone();
 
                 // Format output
-                output.println("Name of sort:\tWorst Case Runtime:\tBest case runtime:\tRun time(desc):\tRun time(asc):\tRun time(random, average of 10 trials):");
+                output.println("Name of sort:\tWorst Case Runtime:\tBest case runtime:\tRun time(desc):\tRun time(asc):\tRun time(random, average of 10 trials): (Note: Runtimes are in nanoseconds)");
 
                 // Create Sorting objects
                 SelectionSort selectionSort = new SelectionSort();
@@ -53,8 +53,8 @@ public class SortingAnalysis {
                 HeapSort heapSort = new HeapSort();
 
                 // Test Selection sort with 10 trials averaged for random array:
-                double runasc = selectionSort.run(asc) / 1000000;
-                double rundesc = selectionSort.run(desc) / 1000000;
+                double runasc = selectionSort.run(asc);
+                double rundesc = selectionSort.run(desc);
                 double runrand = selectionSort.run(random);
                 random = ran.clone();
                 runrand += selectionSort.run(random);
@@ -74,16 +74,15 @@ public class SortingAnalysis {
                 runrand += selectionSort.run(random);
                 random = ran.clone();
                 runrand += selectionSort.run(random);
-                runrand /= 1000000;
                 runrand /= 10;
                 random = ran.clone();
                 desc = desccl.clone();
-                output.println("Selection Sort\tO(N^2)\t\t\t\tO(N^2)\t\t\t\t" + rundesc + "ms\t\t\t" + runasc
-                                + "ms\t\t\t" + runrand + "ms");
+                output.println("Selection Sort\tO(N^2)\t\t\t\tO(N^2)\t\t\t\t" + rundesc + "\t\t\t" + runasc + "\t\t\t"
+                                + runrand);
 
                 // Test Insertion sort with 10 trials averaged for random array:
-                runasc = insertionSort.run(asc) / 1000000;
-                rundesc = insertionSort.run(desc) / 1000000;
+                runasc = insertionSort.run(asc);
+                rundesc = insertionSort.run(desc);
                 runrand = insertionSort.run(random);
                 random = ran.clone();
                 runrand += insertionSort.run(random);
@@ -103,16 +102,15 @@ public class SortingAnalysis {
                 runrand += insertionSort.run(random);
                 random = ran.clone();
                 runrand += insertionSort.run(random);
-                runrand /= 1000000;
                 runrand /= 10;
                 random = ran.clone();
                 desc = desccl.clone();
-                output.println("Insertion Sort\tO(N^2)\t\t\t\tO(N)\t\t\t\t" + rundesc + "ms\t\t\t" + runasc + "ms\t\t\t"
-                                + runrand + "ms");
+                output.println("Insertion Sort\tO(N^2)\t\t\t\tO(N)\t\t\t\t" + rundesc + "\t\t\t" + runasc + "\t\t\t"
+                                + runrand);
 
                 // Test Bubble sort with 10 trials averaged for random array:
-                runasc = bubbleSort.run(asc) / 1000000;
-                rundesc = bubbleSort.run(desc) / 1000000;
+                runasc = bubbleSort.run(asc);
+                rundesc = bubbleSort.run(desc);
                 runrand = bubbleSort.run(random);
                 random = ran.clone();
                 runrand += bubbleSort.run(random);
@@ -132,16 +130,15 @@ public class SortingAnalysis {
                 runrand += bubbleSort.run(random);
                 random = ran.clone();
                 runrand += bubbleSort.run(random);
-                runrand /= 1000000;
                 runrand /= 10;
                 random = ran.clone();
                 desc = desccl.clone();
-                output.println("Bubble Sort\t\tO(N^2)\t\t\t\tO(N)\t\t\t\t" + rundesc + "ms\t\t\t" + runasc + "ms\t\t\t"
-                                + runrand + "ms");
+                output.println("Bubble Sort\t\tO(N^2)\t\t\t\tO(N)\t\t\t\t" + rundesc + "\t\t\t" + runasc + "\t\t\t"
+                                + runrand);
 
                 // Test Merge sort with 10 trials averaged for random array:
-                runasc = mergeSort.run(asc) / 1000000;
-                rundesc = mergeSort.run(desc) / 1000000;
+                runasc = mergeSort.run(asc);
+                rundesc = mergeSort.run(desc);
                 runrand = mergeSort.run(random);
                 random = ran.clone();
                 runrand += mergeSort.run(random);
@@ -161,16 +158,15 @@ public class SortingAnalysis {
                 runrand += mergeSort.run(random);
                 random = ran.clone();
                 runrand += mergeSort.run(random);
-                runrand /= 1000000;
                 runrand /= 10;
                 random = ran.clone();
                 desc = desccl.clone();
-                output.println("Merge Sort\t\tO(Nlog(N))\t\t\tO(Nlog(N))\t\t\t" + rundesc + "ms\t\t\t" + runasc
-                                + "ms\t\t\t" + runrand + "ms");
+                output.println("Merge Sort\t\tO(Nlog(N))\t\t\tO(Nlog(N))\t\t\t" + rundesc + "\t\t\t" + runasc + "\t\t\t"
+                                + runrand);
 
                 // Test Quick sort with 10 trials averaged for random array:
-                runasc = quickSort.run(asc) / 1000000;
-                rundesc = quickSort.run(desc) / 1000000;
+                runasc = quickSort.run(asc);
+                rundesc = quickSort.run(desc);
                 runrand = quickSort.run(random);
                 random = ran.clone();
                 runrand += quickSort.run(random);
@@ -190,16 +186,15 @@ public class SortingAnalysis {
                 runrand += quickSort.run(random);
                 random = ran.clone();
                 runrand += quickSort.run(random);
-                runrand /= 1000000;
                 runrand /= 10;
                 random = ran.clone();
                 desc = desccl.clone();
-                output.println("Quick Sort\t\tO(N^2)\t\t\t\tO(Nlog(N))\t\t\t" + rundesc + "ms\t\t\t" + runasc
-                                + "ms\t\t\t" + runrand + "ms");
+                output.println("Quick Sort\t\tO(N^2)\t\t\t\tO(Nlog(N))\t\t\t" + rundesc + "\t\t\t" + runasc + "\t\t\t"
+                                + runrand);
 
                 // Test Heap sort with 10 trials averaged for random array:
-                runasc = heapSort.run(asc) / 1000000;
-                rundesc = heapSort.run(desc) / 1000000;
+                runasc = heapSort.run(asc);
+                rundesc = heapSort.run(desc);
                 runrand = heapSort.run(random);
                 runrand += heapSort.run(random);
                 random = ran.clone();
@@ -218,10 +213,9 @@ public class SortingAnalysis {
                 runrand += heapSort.run(random);
                 random = ran.clone();
                 runrand += heapSort.run(random);
-                runrand /= 1000000;
                 runrand /= 10;
-                output.println("Heap Sort\t\tO(Nlog(N))\t\t\tO(Nlog(N))\t\t\t" + rundesc + "ms\t\t\t" + runasc
-                                + "ms\t\t\t" + runrand + "ms");
+                output.println("Heap Sort\t\tO(Nlog(N))\t\t\tO(Nlog(N))\t\t\t" + rundesc + "\t\t\t" + runasc + "\t\t\t"
+                                + runrand);
 
                 output.close();
         }

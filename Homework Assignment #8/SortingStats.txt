@@ -1,7 +1,7 @@
-Name of sort:	Worst Case Runtime:	Best case runtime:	Run time(desc):	Run time(asc):	Run time(random, average of 10 trials):
-Selection Sort	O(N^2)				O(N^2)				41.0ms			12.0ms			23.80764ms
-Insertion Sort	O(N^2)				O(N)				20.0ms			0.0ms			8.1128ms
-Bubble Sort		O(N^2)				O(N)				32.0ms			0.0ms			103.70763ms
-Merge Sort		O(Nlog(N))			O(Nlog(N))			0.0ms			1.0ms			1.36433ms
-Quick Sort		O(N^2)				O(Nlog(N))			14.0ms			21.0ms			1.01235ms
-Heap Sort		O(Nlog(N))			O(Nlog(N))			4.0ms			15.0ms			2.7559899999999997ms
+Name of sort:	Worst Case Runtime:	Best case runtime:	Run time(desc):	Run time(asc):	Run time(random, average of 10 trials): (Note: Runtimes are in nanoseconds)
+Selection Sort	O(N^2)				O(N^2)				3.84037E7			1.25814E7			2.908417E7
+Insertion Sort	O(N^2)				O(N)				2.23273E7			239300.0			8739490.0
+Bubble Sort		O(N^2)				O(N)				3.28506E7			157100.0			1.0631965E8
+Merge Sort		O(Nlog(N))			O(Nlog(N))			1030900.0			1706400.0			1703180.0
+Quick Sort		O(N^2)				O(Nlog(N))			2.07321E7			2.26242E7			852370.0
+Heap Sort		O(Nlog(N))			O(Nlog(N))			4153200.0			1.49418E7			3194080.0
