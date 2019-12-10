@@ -67,7 +67,7 @@ public class BinaryTree {
     /**
      * Determine of a specific Node is a leaf of a binary tree
      * 
-     * @return true if it is a root, false if it is not
+     * @return true if it is a leaf, false if it is not
      */
     public boolean isLeaf() {
         return (root.left == null && root.right == null);
